@@ -122,15 +122,16 @@ function drawInterface() {
   if (configuringScene == false) {
     text("TOTAL: " + " " + TOTAL, 100, 75);
     text("spaceships: " + " " + spaceships.length, 100, 100);
-    text("thrust velocity: " + " " + spaceshipThrustVelocity + " ms/s", 100, 125);
-    text("mass: " + " " + spaceshipMass + " kg", 100, 150);
-    text("reset distance: " + " " + round(spaceshipResetDistance*scaleFactor) + " km", 100, 175);
-    text("record distance: " + " " + round(min(spaceshipMinDistances)*scaleFactor) + " km", 100, 200);
+    text("thrust velocity: " + " " + spaceshipThrustVelocity + "m/s", 100, 125);
+    text("mass: " + " " + spaceshipMass + "kg", 100, 150);
+    text("reset distance: " + " " + round(spaceshipResetDistance*scaleFactor) + "km", 100, 175);
+    text("record distance: " + " " + round(min(spaceshipMinDistances)*scaleFactor) + "km", 100, 200);
   }
   fill(255, 255, 0);
   text("[WASD] = move camera", 100, windowHeight-30);
-  text("[J] = focus on startingposition", 100,  windowHeight-50);
+  text("[J] = focus on startPosition", 100,  windowHeight-50);
   text("[K] = focus on finishPosition", 100,  windowHeight-70);
+  text("[Z] = reload simulation", 100,  windowHeight-90);
   fill(255);
 
   stroke(255, 100, 100);
@@ -275,6 +276,9 @@ function keyPressed() {
     for (let i = 0; i < TOTAL; i++) {
       spaceships[i] = new Spaceship(startPosition.x, startPosition.y, spaceshipThrustVelocity, spaceshipMass, spaceshipSize)
     }
+  }
+  if (keyCode == (90)) {
+    location.reload();
   }
   if (keyCode == (74) && startPosition != null)
     screenTranslation.add(p5.Vector.sub(p5.Vector.sub(createVector(windowWidth/2, windowHeight/2), screenTranslation), startPosition));
